@@ -4,6 +4,8 @@
 # build de Next.js
 /.next
 /out
+next-env.d.ts
+*.tsbuildinfo
 
 # variables de entorno (SECRETO — nunca subir)
 .env
