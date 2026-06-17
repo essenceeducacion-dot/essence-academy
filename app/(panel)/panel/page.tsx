@@ -25,12 +25,14 @@ export default async function PanelInicio() {
             </p>
           </Card>
         </Link>
-        <Card>
-          <h2 className="text-base text-crema">Alumnos e invitaciones</h2>
-          <p className="mt-1 text-sm text-crema/50">
-            Códigos de acceso e inscripciones. (Próxima etapa)
-          </p>
-        </Card>
+        <Link href="/panel/alumnos" className="block">
+          <Card className="h-full transition-colors hover:border-dorado/40">
+            <h2 className="text-base text-crema">Alumnos e inscripciones</h2>
+            <p className="mt-1 text-sm text-crema/50">
+              Inscribí alumnos a un curso y gestioná sus accesos.
+            </p>
+          </Card>
+        </Link>
         {esAdmin && (
           <Card>
             <h2 className="text-base text-crema">Educadores</h2>
