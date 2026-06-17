@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { actualizarLeccion, eliminarLeccion } from "../../acciones";
 import { FormularioLeccion } from "../../_componentes/FormularioLeccion";
 import { SeccionRecursos } from "./_componentes/SeccionRecursos";
+import { SeccionQuiz } from "./_componentes/SeccionQuiz";
 
 export default async function LeccionEdicion({
   params,
@@ -55,6 +56,12 @@ export default async function LeccionEdicion({
       </Card>
 
       <SeccionRecursos
+        cursoId={params.cursoId}
+        etapaId={params.etapaId}
+        leccionId={leccion.id}
+      />
+
+      <SeccionQuiz
         cursoId={params.cursoId}
         etapaId={params.etapaId}
         leccionId={leccion.id}

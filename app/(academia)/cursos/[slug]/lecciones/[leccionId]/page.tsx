@@ -52,7 +52,7 @@ export default async function LeccionAlumno({
     ?.curso_id;
   if (!leccion || etapaCursoId !== curso.id) notFound();
 
-  const [{ data: recursos }, { data: prog }, { data: hermanas }] =
+  const [{ data: recursos }, { data: prog }, { data: hermanas }, { data: quiz }] =
     await Promise.all([
       supabase
         .from("recursos")
@@ -74,6 +74,11 @@ export default async function LeccionAlumno({
         .eq("etapa_id", leccion.etapa_id)
         .order("orden", { ascending: true })
         .order("created_at", { ascending: true }),
+      supabase
+        .from("quizzes")
+        .select("id, titulo")
+        .eq("leccion_id", leccion.id)
+        .maybeSingle(),
     ]);
 
   const listaRecursos = (recursos ?? []) as Recurso[];
@@ -126,6 +131,25 @@ export default async function LeccionAlumno({
             <RecursoVista key={r.id} recurso={r} />
           ))}
         </div>
+      )}
+
+      {quiz && (
+        <Card>
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-base text-crema">Quiz: {quiz.titulo}</h2>
+              <p className="mt-1 text-sm text-crema/50">
+                Poné a prueba lo que viste en esta lección.
+              </p>
+            </div>
+            <Link
+              href={`${base}/lecciones/${leccion.id}/quiz`}
+              className="whitespace-nowrap rounded-lg bg-dorado px-3 py-2 text-sm text-marino-900 hover:bg-dorado/90"
+            >
+              Hacer el quiz
+            </Link>
+          </div>
+        </Card>
       )}
 
       {!staff && (

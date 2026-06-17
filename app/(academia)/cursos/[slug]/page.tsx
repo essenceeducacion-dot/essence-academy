@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requerirSesion, esStaff } from "@/lib/auth/guards";
 import { createClienteServidor } from "@/lib/supabase/server";
+import { flags } from "@/lib/env";
 import { Card } from "@/components/ui/Card";
 
 export default async function CursoAlumno({
@@ -106,6 +107,25 @@ export default async function CursoAlumno({
               className="h-full rounded-full bg-dorado transition-all"
               style={{ width: `${porcentaje}%` }}
             />
+          </div>
+        </Card>
+      )}
+
+      {flags.certificados && !staff && porcentaje === 100 && (
+        <Card className="border-dorado/30">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="text-sm text-crema">¡Completaste el curso!</p>
+              <p className="text-xs text-crema/50">
+                Ya podés obtener tu certificado de finalización.
+              </p>
+            </div>
+            <Link
+              href={`/cursos/${curso.slug}/certificado`}
+              className="shrink-0 rounded-lg bg-dorado px-4 py-2 text-sm text-marino-900 transition-colors hover:bg-dorado/90"
+            >
+              Ver certificado
+            </Link>
           </div>
         </Card>
       )}
