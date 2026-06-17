@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/marca/Logo";
 import { cerrarSesion } from "@/app/(auth)/acciones";
-import { flags } from "@/lib/env";
 import type { Perfil } from "@/lib/auth/guards";
 
 const etiquetaRol: Record<Perfil["rol"], string> = {
@@ -10,31 +9,13 @@ const etiquetaRol: Record<Perfil["rol"], string> = {
   alumno: "Alumno",
 };
 
-export function BarraSuperior({ perfil }: { perfil: Perfil }) {
+export function BarraPanel({ perfil }: { perfil: Perfil }) {
   return (
     <header className="border-b border-white/10 bg-marino-900/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5">
-        <div className="flex items-center gap-6">
-          <Link href="/">
-            <Logo />
-          </Link>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link href="/inicio" className="text-crema/70 hover:text-crema">
-              Mis cursos
-            </Link>
-            {flags.comunidad && (
-              <Link href="/comunidad" className="text-crema/70 hover:text-crema">
-                Comunidad
-              </Link>
-            )}
-            {(perfil.rol === "admin" || perfil.rol === "educador") && (
-              <Link href="/panel" className="text-dorado/70 hover:text-dorado">
-                Panel
-              </Link>
-            )}
-          </nav>
-        </div>
-
+      <div className="flex items-center justify-between px-6 py-3.5">
+        <Link href="/panel">
+          <Logo />
+        </Link>
         <div className="flex items-center gap-4">
           <Link href="/perfil" className="text-right transition-opacity hover:opacity-80">
             <p className="text-sm text-crema">{perfil.nombre ?? perfil.email}</p>

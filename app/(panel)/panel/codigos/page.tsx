@@ -2,6 +2,7 @@ import { requerirAdmin } from "@/lib/auth/guards";
 import { createClienteServidor } from "@/lib/supabase/server";
 import { Card } from "@/components/ui/Card";
 import { FormularioCodigo } from "./_componentes/FormularioCodigo";
+import { BotonCopiar } from "./_componentes/BotonCopiar";
 import { toggleCodigo, eliminarCodigo } from "./acciones";
 
 function fechaCorta(iso: string | null): string {
@@ -79,8 +80,11 @@ export default async function CodigosPage() {
                     key={cod.id}
                     className={inactivo ? "opacity-50" : ""}
                   >
-                    <td className="px-4 py-3 font-mono text-crema">
-                      {cod.codigo}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-1">
+                        <span className="font-mono text-crema">{cod.codigo}</span>
+                        <BotonCopiar texto={cod.codigo} />
+                      </div>
                     </td>
                     <td className="px-4 py-3 capitalize text-crema/70">
                       {cod.rol_destino}
