@@ -31,10 +31,10 @@ export function BarraSuperior({ perfil }: { perfil: Perfil }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="text-right">
+          <Link href="/perfil" className="text-right transition-opacity hover:opacity-80">
             <p className="text-sm text-crema">{perfil.nombre ?? perfil.email}</p>
             <p className="text-xs text-dorado/80">{etiquetaRol[perfil.rol]}</p>
-          </div>
+          </Link>
           <form action={cerrarSesion}>
             <button
               type="submit"

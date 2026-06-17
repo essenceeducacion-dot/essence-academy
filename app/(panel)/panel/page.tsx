@@ -33,13 +33,23 @@ export default async function PanelInicio() {
             </p>
           </Card>
         </Link>
-        {esAdmin && (
-          <Card>
-            <h2 className="text-base text-crema">Educadores</h2>
+        <Link href="/panel/progreso" className="block">
+          <Card className="h-full transition-colors hover:border-dorado/40">
+            <h2 className="text-base text-crema">Progreso de alumnos</h2>
             <p className="mt-1 text-sm text-crema/50">
-              Gestión del equipo. (Próxima etapa)
+              Avance por curso y certificados emitidos.
             </p>
           </Card>
+        </Link>
+        {esAdmin && (
+          <Link href="/panel/codigos" className="block">
+            <Card className="h-full transition-colors hover:border-dorado/40">
+              <h2 className="text-base text-crema">Códigos de invitación</h2>
+              <p className="mt-1 text-sm text-crema/50">
+                Creá y administrá códigos de acceso.
+              </p>
+            </Card>
+          </Link>
         )}
       </div>
     </div>
