@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requerirStaff } from "@/lib/auth/guards";
 import { Card } from "@/components/ui/Card";
 
@@ -16,12 +17,14 @@ export default async function PanelInicio() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Card>
-          <h2 className="text-base text-crema">Cursos</h2>
-          <p className="mt-1 text-sm text-crema/50">
-            Carga y organización de contenido. (Próxima etapa)
-          </p>
-        </Card>
+        <Link href="/panel/cursos" className="block">
+          <Card className="h-full transition-colors hover:border-dorado/40">
+            <h2 className="text-base text-crema">Cursos</h2>
+            <p className="mt-1 text-sm text-crema/50">
+              Carga y organización de contenido.
+            </p>
+          </Card>
+        </Link>
         <Card>
           <h2 className="text-base text-crema">Alumnos e invitaciones</h2>
           <p className="mt-1 text-sm text-crema/50">
